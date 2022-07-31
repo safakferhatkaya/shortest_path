@@ -23,3 +23,4 @@ We can use Array's for the 3 steps.
 
 On step 3, we are using 2 Array. One of them is parent (previous), when we find a cost less than infinity/current value, we update it with its min value (with the smaller value found).
 
+![harita](https://user-images.githubusercontent.com/78663077/182049717-68b139e3-b37f-4330-b970-1a1dd238302a.jpg)
