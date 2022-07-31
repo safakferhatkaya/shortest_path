@@ -57,4 +57,5 @@ end
 city_names_hash = {0 => "Memphis", 1 => "Nashville",2 => "New Orleans", 3 => "Mobile", 4 => "Atlanta",5 => "Savanna"}
 graph = [[0, 15, 3, 7, 10, 0], [15, 0, 0, 0, 2, 0], [3, 0, 3, 0, 0, 0], [7, 0, 3, 0, 2, 6], [10, 2, 0, 2, 0, 1], [0, 0, 0, 6, 1, 0] ]
 #example output
-ShortestPath.call(graph, city_names_hash)(0, 5)
+s = ShortestPath.new(graph, city_names_hash, {start_city: 0, end_city: 5}).call
+puts s
