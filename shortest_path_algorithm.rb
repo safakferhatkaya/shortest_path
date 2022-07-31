@@ -12,46 +12,45 @@ class ShortestPath
   end
 
   private
-    def dijkstra(source, target)
-      # init visited nodes as false
-      visited = [false] * @graph.size 
-      # init cost to infinity unless source node, source node's cost is 0
-      cost = [Float::INFINITY] * @graph.size
-      cost[source] = 0
-      # init parent node to nil
-      previous = [nil] * @graph.size
-      # while there are nodes to visit
-      while true
-        min = Float::INFINITY
-        min_index = nil
-        @graph.size.times do |i|
-          if !visited[i] && cost[i] < min
-            min = cost[i]
-            min_index = i
-          end
-        end
-        break if min_index.nil?
-        break if min_index == target
-        visited[min_index] = true
-        @graph.size.times do |i|
-          if !visited[i] && @graph[min_index][i] != 0
-            alt = cost[min_index] + @graph[min_index][i] # cost of current node + cost of edge
-            if alt < cost[i]  # if cost of current node + cost of edge is less than cost of node
-              cost[i] = alt   # update cost of node
-              previous[i] = min_index # update previous node
-            end 
-          end
+  def dijkstra(source, target)
+    # init visited nodes as false
+    visited = [false] * @graph.size 
+    # init cost to infinity unless source node, source node's cost is 0
+    cost = [Float::INFINITY] * @graph.size
+    cost[source] = 0
+    # init parent node to nil
+    previous = [nil] * @graph.size
+    # while there are nodes to visit
+    while true
+      min = Float::INFINITY
+      min_index = nil
+      @graph.size.times do |i|
+        if !visited[i] && cost[i] < min
+          min = cost[i]
+          min_index = i
         end
       end
-      path = [] # init path array as empty
-      u = target # set u as target 
-      while previous[u] # while previous node is not nil
-        path << u # add node to path
-        u = previous[u] # set u as previouds node  
+      break if min_index.nil?
+      break if min_index == target
+      visited[min_index] = true
+      @graph.size.times do |i|
+        if !visited[i] && @graph[min_index][i] != 0
+          alt = cost[min_index] + @graph[min_index][i] # cost of current node + cost of edge
+          if alt < cost[i]  # if cost of current node + cost of edge is less than cost of node
+            cost[i] = alt   # update cost of node
+            previous[i] = min_index # update previous node
+          end 
+        end
       end
-      path << u # add source to path
-      puts "The shortest path from #{@city_names_hash[source]} to #{@city_names_hash[target]} is #{path.reverse.map{|i| @city_names_hash[i]}.join(" -> ")} with a cost of #{cost[target]}$" 
     end
+    path = [] # init path array as empty
+    u = target # set u as target 
+    while previous[u] # while previous node is not target
+      path << u # add node to path
+      u = previous[u] # set u as previouds node  
+    end
+    path << u # add source to path
+    puts "The shortest path from #{@city_names_hash[source]} to #{@city_names_hash[target]} is #{path.reverse.map{|i| @city_names_hash[i]}.join(" -> ")} with a cost of #{cost[target]}$" 
   end
 end
 #example input
