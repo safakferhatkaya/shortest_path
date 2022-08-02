@@ -56,6 +56,9 @@ end
 #example input
 city_names_hash = {0 => "Memphis", 1 => "Nashville",2 => "New Orleans", 3 => "Mobile", 4 => "Atlanta",5 => "Savanna"}
 graph = [[0, 15, 3, 7, 10, 0], [15, 0, 0, 0, 2, 0], [3, 0, 3, 0, 0, 0], [7, 0, 3, 0, 2, 6], [10, 2, 0, 2, 0, 1], [0, 0, 0, 6, 1, 0] ]
-#example output
 s = ShortestPath.new(graph, city_names_hash, {start_city: 0, end_city: 5}).call
+graph = [[0, 15, 3, 7, 10, Float::INFINITY], [15, 0, Float::INFINITY, Float::INFINITY, 2, 0], [3, Float::INFINITY, 0, Float::INFINITY, Float::INFINITY, Float::INFINITY], [7, Float::INFINITY, 3, 0, 2, 6], [10, 2, Float::INFINITY, 2, 0, 1], [Float::INFINITY, Float::INFINITY, Float::INFINITY, 6, 1, 0] ]
+s = ShortestPath.new(graph, city_names_hash, {start_city: 0, end_city: 5}).call
+#example output
+
 puts s
